@@ -1,21 +1,21 @@
-int _putchar(char c);
+#ifndef MAIN_H
 
-void reset_to_98(int *n);
+#define MAIN_H
 
-void swap_int(int *a, int *b);
 
-int _strlen(char *s);
 
-void _puts(char *str);
+#include <stdio.h>
 
-void print_rev(char *s);
 
-void rev_string(char *s);
 
-void puts2(char *str);
+void positive_or_negative(int i);
 
-void puts_half(char *str);
+int largest_number(int a, int b, int c);
 
-void print_array(int *a, int n);
+int convert_day(int month, int day);
 
-char *_strcpy(char *dest, char *src);
+void print_remaining_days(int month, int day, int year);
+
+
+
+#endif /* MAIN_H */
