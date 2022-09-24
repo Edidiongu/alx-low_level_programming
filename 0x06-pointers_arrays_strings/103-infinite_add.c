@@ -1,53 +1,107 @@
 #include "main.h"
 
-
+#include <stdio.h>
 
 /**
  *
- *  * rot13 - encodes a string in rot13
+ *  * infinite_add - adds two numbers
  *
- *   * @s: string to be encoded
+ *   * @n1: number one.
  *
- *    * Return: the resulting strring
+ *    * @n2: number two.
  *
- *     */
+ *     * @r: buffer that the function will use to store the result.
+ *
+ *      * @size_r: buffer size:
+ *
+ *       * Return: the pointer to dest.
+ *
+ *        */
 
-char *rot13(char *s)
+
+
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
 
 {
 
-		int i, j;
+		int c1 = 0, c2 = 0, op, bg, dr1, dr2, add = 0;
 
 
 
-			char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+			while (*(n1 + c1) != '\0')
 
-				char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+						c1++;
 
+				while (*(n2 + c2) != '\0')
 
+							c2++;
 
-					for (i = 0; s[i] != '\0'; i++)
+					if (c1 >= c2)
 
-							{
+								bg = c1;
 
-										for (j = 0; a[j] != '\0'; j++)
+						else
+
+									bg = c2;
+
+							if (size_r <= bg + 1)
+
+										return (0);
+
+								r[bg + 1] = '\0';
+
+									c1--, c2--, size_r--;
+
+										dr1 = *(n1 + c1) - 48, dr2 = *(n2 + c2) - 48;
+
+											while (bg >= 0)
 
 													{
 
-																	if (s[i] == a[j])
+																op = dr1 + dr2 + add;
 
-																					{
+																		if (op >= 10)
 
-																										s[i] = b[j];
+																						add = op / 10;
 
-																														break;
+																				else
 
-																																	}
+																								add = 0;
 
-																		    }
+																						if (op > 0)
 
-											}
+																									*(r + bg) = (op % 10) + 48;
 
-						return (s);
+																								else
+
+																												*(r + bg) = '0';
+
+																										if (c1 > 0)
+
+																														c1--, dr1 = *(n1 + c1) - 48;
+
+																												else
+
+																																dr1 = 0;
+
+																														if (c2 > 0)
+
+																																		c2--, dr2 = *(n2 + c2) - 48;
+
+																																else
+
+																																				dr2 = 0;
+
+																																		bg--, size_r--;
+
+																																			}
+
+												if (*(r) == '0')
+
+															return (r + 1);
+
+													else
+
+																return (r);
 
 }
